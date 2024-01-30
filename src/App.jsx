@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Todos from './components/Todos';
+import Register from './pages/Register';
 
 
 function App() {
@@ -7,6 +8,12 @@ function App() {
   const [todoMessage, setTodoMessage] = useState("");
   const [imgFile, setImgFile] = useState(null);
   // const [todos, setTodos] = useState()
+  const [userData, setUserData] = useState(null)
+
+  const handleUserData = (data) => {
+    setUserData(data);
+    console.log(Register.data)
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -30,7 +37,7 @@ function App() {
       }
 
       const data = await response.json();
-      toast.success("Successfully created")
+      // toast.success("Successfully created")
       console.log(data); 
 
 

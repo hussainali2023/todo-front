@@ -4,13 +4,38 @@ export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState("")
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const user = {
-             email, password
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        const formData = {
+          email,
+          password
+        };
+    
+        try {
+          const response = await fetch("http://localhost:5000/api/user/signin", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
+    
+          if (!response.ok) {
+            throw new Error('Failed to Register');
+          }
+    
+          const data = await response.json();
+        //   toast.success("Successfully created")
+          console.log(data); 
+    
+    
+        } catch (error) {
+          console.error(error);
+          
         }
-        console.log(user)
-    }
+      };
+    
   return (
    <>
    <div className=" bg-pink-300 py-10 m-44 ">

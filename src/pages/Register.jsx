@@ -1,17 +1,56 @@
 import { useState } from "react"
 
-export default function Register() {
+export default function Register(props) {
     const [name, setName] = useState("")
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState("")
+    const [userData, setUserData] = useState("")
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const user = {
-            name, email, password
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        const formData = {
+          name,
+          email,
+          password
+        };
+    
+        try {
+          const response = await fetch("http://localhost:5000/api/user/signup", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
+    
+          if (!response.ok) {
+            throw new Error('Failed to Register');
+          }
+    
+          const data = await response.json();
+          setUserData(data)
+          props.onUserData(data)
+        //   toast.success("Successfully created")
+          console.log(data); 
+    
+    
+        } catch (error) {
+          console.error(error);
+          
         }
-        console.log(user)
-    }
+      };
+    
+
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     const user = {
+    //         name, email, password
+    //     }
+    //     console.log(user)
+    // }
   return (
    <>
    <div className=" bg-pink-300 py-10 m-44 ">
