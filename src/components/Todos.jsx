@@ -65,6 +65,9 @@ export default function Todos() {
     setUpdatedTodoMessage(e.target.value);
   };
 
+
+
+
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
 
@@ -105,6 +108,8 @@ export default function Todos() {
                 <br />
                 <br />
                 <textarea type="text" value={updatedTodoMessage} onChange={hangleUpdatedTodoMessage} name="" id="" />
+
+                <input type="file" />
                 <br />
                 <button className='px-5 bg-blue-600 text-white rounded-md' type='submit'>
                   Update

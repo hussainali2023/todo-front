@@ -1,8 +1,13 @@
 import { useState } from "react"
+import toast from "react-hot-toast";
 
 export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState("")
+    const [loginUser, setLoginUser] = useState()
+    
+
+    console.log(loginUser)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,12 +31,17 @@ export default function Login() {
           }
     
           const data = await response.json();
+          toast.success("Login Successful")
+        
+          setLoginUser(data)
         //   toast.success("Successfully created")
           console.log(data); 
     
     
         } catch (error) {
           console.error(error);
+          toast.error(`${error}`)
+          
           
         }
       };

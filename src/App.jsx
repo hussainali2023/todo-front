@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Todos from './components/Todos';
 import Register from './pages/Register';
+import toast, { Toaster } from 'react-hot-toast';
+import Login from './pages/Login';
 
 
 function App() {
@@ -9,6 +11,13 @@ function App() {
   const [imgFile, setImgFile] = useState(null);
   // const [todos, setTodos] = useState()
   const [userData, setUserData] = useState(null)
+  const [selectedFile, setSelectedFile] = useState(null)
+
+  console.log(selectedFile)
+
+  console.log(userData)
+
+
 
   const handleUserData = (data) => {
     setUserData(data);
@@ -21,6 +30,7 @@ function App() {
     const formData = {
       title,
       todoMessage,
+      imageUrl: selectedFile
     };
 
     try {
@@ -37,7 +47,7 @@ function App() {
       }
 
       const data = await response.json();
-      // toast.success("Successfully created")
+      toast.success("Successfully created")
       console.log(data); 
 
 
@@ -48,9 +58,13 @@ function App() {
   };
 
 
+  
+
+
 // console.log(todos)
   return (
     <>
+    
       <div>
       <div className='flex justify-center '>
         <form onSubmit={submitHandler} className=' bg-yellow-100 px-32 py-10 my-10'>
@@ -69,7 +83,7 @@ function App() {
             name='content'
           /> <br />
           <input
-            onChange={(e) => setImgFile(e.target.files[0])}
+            
             type='file'
             className='w-full'
           />
@@ -84,7 +98,9 @@ function App() {
       <Todos/>
       </div>
      <div>
+     {/* <Login handleUserData = {handleUserData}/> */}
      </div>
+     <Toaster/>
     </>
   );
 }

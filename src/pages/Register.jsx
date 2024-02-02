@@ -1,4 +1,5 @@
 import { useState } from "react"
+import toast from "react-hot-toast"
 
 export default function Register(props) {
     const [name, setName] = useState("")
@@ -30,6 +31,7 @@ export default function Register(props) {
           }
     
           const data = await response.json();
+          toast.success("Registration Successful")
           setUserData(data)
           props.onUserData(data)
         //   toast.success("Successfully created")

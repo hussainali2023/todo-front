@@ -3,11 +3,13 @@ import App from "../App";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import Todos from "../components/Todos";
+// import Image from "../pages/Image";
+import ImageUpload from "../pages/Image";
 
 const router = createBrowserRouter([
     {
         path:"/",
-        element: <App/>
+        element: <App />
     },
     {
         path:"/register",
@@ -20,6 +22,10 @@ const router = createBrowserRouter([
     {
         path:"/singleTodo/:id",
         element: <Todos/>
+    },
+    {
+        path:"/image",
+        element: <ImageUpload/>
     }
 
 ])
